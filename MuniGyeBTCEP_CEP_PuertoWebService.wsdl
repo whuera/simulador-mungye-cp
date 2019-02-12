@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+        xmlns:tns="http://tempuri.org/"
+        xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        name="BizTalkServiceInstance"
+        targetNamespace="http://tempuri.org/">
+    <wsdl:documentation>
+        <CreationInfo Created="2015-05-18 10:15:04Z"/>
+    </wsdl:documentation>
+    <wsp:Policy wsp:Id="BasicHttpBinding_ITwoWayAsync_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding
+                        xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/ws-securitypolicy.xsd">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+
+    <wsdl:types>
+        <xsd:schema
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                targetNamespace="http://tempuri.org/">
+
+            <xsd:element name="ConsultarCEP">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cep" nillable="true" type="xs:string"/>
+                        <xs:element name="fechaHoraSwitch" type="xs:dateTime"/>
+                        <xs:element name="secuenciaSwitch" type="xs:int"/>
+                        <xs:element name="fechaHoraTrxLocal" type="xs:dateTime"/>
+                        <xs:element name="fechaCompensacion" type="xs:dateTime"/>
+                        <xs:element name="indicadorReverso" nillable="true"
+                                    type="xs:string"/>
+                        <xs:element name="abaInsAdquiriente" nillable="true"
+                                    type="xs:string"/>
+                        <xs:element name="codigoOperador" nillable="true"
+                                    type="xs:string"/>
+                        <xs:element name="secuenciaInstaDq" type="xs:int"/>
+                        <xs:element name="numeroTerminal" nillable="true"
+                                    type="xs:string"/>
+                        <xs:element name="codigoTransaccion" nillable="true"
+                                    type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xsd:element>
+
+            <xsd:element name="ConsultarCEPResponse">
+                <xs:complexType>
+                    <xs:sequence>
+
+                        <xsd:element minOccurs="0" maxOccurs="1"
+                                     name="ConsultarCEPResult"
+                                     type="tns:ConsultarCEPResult">
+                        </xsd:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xsd:element>
+
+            <xs:element name="ParametrosSalidaConsultarCEPWS">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="CodigoTramite" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="AnioTransaccion" type="xs:short"/>
+                        <xs:element minOccurs="0" name="NumeroTransaccion" type="xs:int"/>
+                        <xs:element minOccurs="0" name="FechaTransaccion" type="xs:dateTime"/>
+                        <xs:element minOccurs="0" name="NumeroIdentificacion" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="NombreContribuyente" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="CodigoPredial" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="ValorTasa" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorDeuda" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorMulta" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorInteres" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorCoactiva" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorDescuento" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="ValorTotal" type="xs:decimal"/>
+                        <xs:element minOccurs="0" name="FechaExigibilidad" type="xs:dateTime"/>
+                        <xs:element minOccurs="0" name="Observacion1" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Observacion2" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="Observacion3" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="secuenciaSwitch" type="xs:int"/>
+                        <xs:element minOccurs="0" name="secuenciaInstaDq" type="xs:int"/>
+                        <xs:element minOccurs="0" name="codigoResultado" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="codigoDetalleResultado" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ParametrosEntradaConsultarCEPWS">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cep" nillable="true" type="xs:string"/>
+                        <xs:element name="fechaHoraSwitch" type="xs:dateTime"/>
+                        <xs:element name="secuenciaSwitch" type="xs:int"/>
+                        <xs:element name="fechaHoraTrxLocal" type="xs:dateTime"/>
+                        <xs:element name="fechaCompensacion" type="xs:dateTime"/>
+                        <xs:element name="indicadorReverso" nillable="true" type="xs:string"/>
+                        <xs:element name="abaInsAdquiriente" nillable="true" type="xs:string"/>
+                        <xs:element name="codigoOperador" nillable="true" type="xs:string"/>
+                        <xs:element name="secuenciaInstaDq" type="xs:int"/>
+                        <xs:element name="numeroTerminal" nillable="true" type="xs:string"/>
+                        <xs:element name="codigoTransaccion" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xsd:complexType name="ConsultarCEPResult">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="CodigoTramite"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="AnioTransaccion"
+                                type="xs:short"/>
+                    <xs:element minOccurs="0" name="NumeroTransaccion"
+                                type="xs:int"/>
+                    <xs:element minOccurs="0" name="FechaTransaccion"
+                                type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="NumeroIdentificacion"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="NombreContribuyente"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="CodigoPredial"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ValorTasa"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorDeuda"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorMulta"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorInteres"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorCoactiva"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorDescuento"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="ValorTotal"
+                                type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="FechaExigibilidad"
+                                type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="Observacion1"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Observacion2"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="Observacion3"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="secuenciaSwitch"
+                                type="xs:int"/>
+                    <xs:element minOccurs="0" name="secuenciaInstaDq"
+                                type="xs:int"/>
+                    <xs:element minOccurs="0" name="codigoResultado"
+                                nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codigoDetalleResultado"
+                                nillable="true" type="xs:string"/>
+                </xs:sequence>
+
+            </xsd:complexType>
+
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="MuniGyeBTCEP_CEP_PuertoWebService_ConsultarCEP_InputMessage">
+        <wsdl:part
+                name="part" element="tns:ParametrosEntradaConsultarCEPWS"/>
+    </wsdl:message>
+    <wsdl:message name="MuniGyeBTCEP_CEP_PuertoWebService_ConsultarCEP_OutputMessage">
+        <wsdl:part
+                name="part" element="tns:ConsultarCEPResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="MuniGyeBTCEP_CEP_PuertoWebService">
+        <wsdl:documentation>service "MuniGyeBTCEP.CEP" port "PuertoWebService"</wsdl:documentation>
+        <wsdl:operation name="ConsultarCEP">
+            <wsdl:documentation>operation "ConsultarCEP"</wsdl:documentation>
+            <wsdl:input message="tns:MuniGyeBTCEP_CEP_PuertoWebService_ConsultarCEP_InputMessage"/>
+            <wsdl:output message="tns:MuniGyeBTCEP_CEP_PuertoWebService_ConsultarCEP_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpBinding_ITwoWayAsync" type="tns:MuniGyeBTCEP_CEP_PuertoWebService">
+        <wsp:PolicyReference URI="#BasicHttpBinding_ITwoWayAsync_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="ConsultarCEP">
+            <wsdl:documentation>operation "ConsultarCEP"</wsdl:documentation>
+            <soap:operation soapAction="http://tempuri.org/ConsultarCEP" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+    <wsdl:service name="BizTalkServiceInstance">
+        <wsdl:port name="BasicHttpBinding_ITwoWayAsync" binding="tns:BasicHttpBinding_ITwoWayAsync">
+            <soap:address location="http://192.168.25.123:8443/CEPBT/MuniGyeBTCEP_CEP_PuertoWebService.wsdl"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
